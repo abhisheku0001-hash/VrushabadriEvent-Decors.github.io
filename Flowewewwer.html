@@ -1,0 +1,701 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vrushabadri Event & Decors</title>
+<style>
+  /* SECTION BACKGROUND IMAGES */
+.bg-section{
+  background-size:cover;
+  background-position:center;
+  background-repeat:no-repeat;
+}
+
+.hero-bg{
+  background-image:
+    linear-gradient(rgba(7,5,15,0.72), rgba(7,5,15,0.88)),
+    url('https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&w=1600&q=80');
+}
+
+.services-bg{
+  background-image:
+    linear-gradient(rgba(7,5,15,0.82), rgba(7,5,15,0.9)),
+    url('https://images.unsplash.com/photo-1460978812857-470ed1c77af0?auto=format&fit=crop&w=1600&q=80');
+}
+
+.about-bg{
+  background-image:
+    linear-gradient(rgba(7,5,15,0.8), rgba(7,5,15,0.92)),
+    url('https://images.unsplash.com/photo-1522673607200-164d1b6ce486?auto=format&fit=crop&w=1600&q=80');
+}
+
+.contact-bg{
+  background-image:
+    linear-gradient(rgba(7,5,15,0.82), rgba(7,5,15,0.94)),
+    url('https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1600&q=80');
+}
+
+/* GALLERY */
+.gallery-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:18px;
+  margin-top:48px;
+  width:100%;
+  max-width:1100px;
+}
+
+.gallery-item{
+  position:relative;
+  overflow:hidden;
+  border-radius:18px;
+  min-height:320px;
+  border:1px solid rgba(255,255,255,0.08);
+}
+
+.gallery-item img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  transition:transform 0.8s ease;
+}
+
+.gallery-item:hover img{
+  transform:scale(1.08);
+}
+
+.gallery-overlay{
+  position:absolute;
+  inset:0;
+  background:linear-gradient(to top,rgba(7,5,15,0.85),transparent);
+  display:flex;
+  align-items:flex-end;
+  padding:22px;
+}
+
+.gallery-title{
+  font-family:'Playfair Display',serif;
+  font-size:1.2rem;
+  color:#fff;
+}
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Jost:wght@300;400;500;600&display=swap');
+
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{
+    background:#07050f;
+    color:#fff;
+    font-family:'Jost',sans-serif;
+    overflow-x:hidden;
+  }
+  canvas{position:fixed;top:0;left:0;z-index:0;pointer-events:none}
+
+  .content{position:relative;z-index:10}
+
+  /* NAV */
+  nav{
+    position:fixed;top:0;left:0;right:0;z-index:100;
+    padding:22px 48px;
+    display:flex;align-items:center;justify-content:space-between;
+    background:linear-gradient(to bottom,rgba(7,5,15,0.95),transparent);
+  }
+  .nav-logo{
+    font-family:'Playfair Display',serif;
+    font-size:1.15rem;letter-spacing:0.04em;
+    color:#f5d7ff;font-weight:700;
+  }
+  .nav-logo span{color:#d4a0ff}
+  .nav-links{display:flex;gap:36px;}
+  .nav-links a{
+    font-size:12px;letter-spacing:3px;text-transform:uppercase;
+    color:rgba(255,255,255,0.45);text-decoration:none;
+    transition:color 0.3s;
+  }
+  .nav-links a:hover{color:#d4a0ff}
+
+  /* PROGRESS */
+  .progress-bar{
+    position:fixed;top:0;left:0;height:2px;
+    background:linear-gradient(90deg,#c084e0,#f472b6,#fbbf24);
+    z-index:200;transition:width 0.1s linear;width:0%;
+  }
+
+  /* SECTIONS */
+  section{
+    min-height:100vh;
+    display:flex;flex-direction:column;
+    align-items:center;justify-content:center;
+    padding:80px 40px;
+    text-align:center;
+    position:relative;
+  }
+
+  /* ANIMATED ELEMENTS */
+  .label{
+    font-size:11px;letter-spacing:5px;text-transform:uppercase;
+    color:#c084e0;margin-bottom:18px;
+    opacity:0;transform:translateY(30px);
+    transition:all 0.8s cubic-bezier(0.16,1,0.3,1);
+  }
+  .section-title{
+    font-family:'Playfair Display',serif;
+    font-size:clamp(38px,7vw,82px);font-weight:900;line-height:1.05;
+    opacity:0;transform:translateY(40px);
+    transition:all 0.9s 0.1s cubic-bezier(0.16,1,0.3,1);
+    max-width:860px;
+  }
+  .desc{
+    font-size:clamp(15px,1.8vw,18px);
+    color:rgba(255,255,255,0.45);
+    margin-top:24px;max-width:580px;line-height:1.85;
+    font-weight:300;
+    opacity:0;transform:translateY(30px);
+    transition:all 0.9s 0.2s cubic-bezier(0.16,1,0.3,1);
+  }
+  .tag-box{
+    margin-top:36px;
+    display:flex;gap:12px;flex-wrap:wrap;justify-content:center;
+    opacity:0;transform:translateY(20px);
+    transition:all 0.9s 0.35s cubic-bezier(0.16,1,0.3,1);
+  }
+  .tag{
+    background:rgba(255,255,255,0.05);
+    border:1px solid rgba(255,255,255,0.12);
+    padding:9px 20px;border-radius:100px;
+    font-size:12px;font-weight:500;letter-spacing:1px;
+    color:rgba(255,255,255,0.6);
+    font-family:'Jost',sans-serif;
+  }
+  .tag.gold{background:rgba(251,191,36,0.1);border-color:rgba(251,191,36,0.25);color:#fbbf24}
+  .tag.rose{background:rgba(244,114,182,0.1);border-color:rgba(244,114,182,0.25);color:#f472b6}
+  .tag.purple{background:rgba(192,132,224,0.12);border-color:rgba(192,132,224,0.3);color:#c084e0}
+  .tag.lavender{background:rgba(167,139,250,0.1);border-color:rgba(167,139,250,0.25);color:#a78bfa}
+  .tag.mint{background:rgba(52,211,153,0.1);border-color:rgba(52,211,153,0.25);color:#34d399}
+
+  section.visible .label,
+  section.visible .section-title,
+  section.visible .desc,
+  section.visible .tag-box,
+  section.visible .services-grid,
+  section.visible .contact-card{opacity:1;transform:none}
+
+  /* HERO always visible */
+  .hero .label,.hero .section-title,.hero .desc,.hero .tag-box{opacity:1;transform:none}
+  .hero .section-title{font-size:clamp(48px,9vw,110px)}
+
+  /* GRADIENT TEXT */
+  .gradient-text{
+    background:linear-gradient(135deg,#c084e0 0%,#f472b6 50%,#fbbf24 100%);
+    -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+  }
+  .gradient-text-2{
+    background:linear-gradient(135deg,#f472b6,#c084e0);
+    -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+  }
+
+  /* GLOW ORBS */
+  .glow{
+    position:absolute;border-radius:50%;
+    filter:blur(90px);pointer-events:none;z-index:1;
+  }
+
+  /* DIVIDER */
+  .divider{
+    position:absolute;bottom:0;left:0;right:0;
+    height:1px;
+    background:linear-gradient(90deg,transparent,rgba(192,132,224,0.15),transparent);
+  }
+
+  /* SERVICES GRID */
+  .services-grid{
+    display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+    gap:20px;margin-top:48px;max-width:1000px;width:100%;
+    opacity:0;transform:translateY(30px);
+    transition:all 1s 0.3s cubic-bezier(0.16,1,0.3,1);
+  }
+  .service-card{
+    background:rgba(255,255,255,0.03);
+    border:1px solid rgba(192,132,224,0.12);
+    border-radius:16px;padding:30px 26px;
+    text-align:left;
+    transition:border-color 0.4s, background 0.4s, transform 0.4s;
+  }
+  .service-card:hover{
+    border-color:rgba(192,132,224,0.35);
+    background:rgba(192,132,224,0.06);
+    transform:translateY(-4px);
+  }
+  .service-icon{
+    font-size:28px;margin-bottom:14px;display:block;
+  }
+  .service-name{
+    font-family:'Playfair Display',serif;
+    font-size:1.1rem;font-weight:700;
+    color:#f5d7ff;margin-bottom:8px;
+  }
+  .service-desc{
+    font-size:13px;line-height:1.75;
+    color:rgba(255,255,255,0.4);font-weight:300;
+  }
+  .service-example{
+    margin-top:14px;
+    font-size:11px;letter-spacing:1px;
+    color:#c084e0;font-weight:500;
+  }
+
+  /* CONTACT CARD */
+  .contact-card{
+    margin-top:40px;
+    background:rgba(255,255,255,0.03);
+    border:1px solid rgba(192,132,224,0.18);
+    border-radius:20px;padding:40px 48px;
+    max-width:560px;width:100%;
+    opacity:0;transform:translateY(30px);
+    transition:all 0.9s 0.4s cubic-bezier(0.16,1,0.3,1);
+  }
+  .contact-card p{
+    font-size:15px;line-height:1.85;color:rgba(255,255,255,0.45);font-weight:300;
+    margin-bottom:28px;
+  }
+  .cta-btn{
+    display:inline-block;
+    padding:14px 36px;
+    background:linear-gradient(135deg,#c084e0,#f472b6);
+    color:#fff;border-radius:100px;
+    font-family:'Jost',sans-serif;
+    font-size:13px;letter-spacing:2px;text-transform:uppercase;font-weight:600;
+    text-decoration:none;
+    transition:opacity 0.3s, transform 0.3s, box-shadow 0.3s;
+    box-shadow:0 0 28px rgba(192,132,224,0.35);
+  }
+  .cta-btn:hover{opacity:0.88;transform:translateY(-2px);box-shadow:0 0 44px rgba(192,132,224,0.55)}
+
+  /* SCROLL HINT */
+  .scroll-hint{
+    position:fixed;bottom:32px;left:50%;transform:translateX(-50%);
+    z-index:20;display:flex;flex-direction:column;align-items:center;gap:10px;
+    opacity:1;transition:opacity 0.5s;
+  }
+  .scroll-hint span{font-size:10px;letter-spacing:4px;color:rgba(255,255,255,0.25);text-transform:uppercase}
+  .scroll-line{width:1px;height:50px;background:linear-gradient(to bottom,rgba(192,132,224,0.5),transparent);animation:scrollDrop 2s ease-in-out infinite}
+  @keyframes scrollDrop{
+    0%{transform:scaleY(0);transform-origin:top}
+    50%{transform:scaleY(1);transform-origin:top}
+    51%{transform:scaleY(1);transform-origin:bottom}
+    100%{transform:scaleY(0);transform-origin:bottom}
+  }
+
+  /* FOOTER */
+  footer{
+    position:relative;z-index:10;
+    text-align:center;padding:48px 20px;
+    font-size:12px;letter-spacing:2px;
+    color:rgba(255,255,255,0.2);
+    border-top:1px solid rgba(255,255,255,0.05);
+  }
+  footer .footer-logo{
+    font-family:'Playfair Display',serif;
+    font-size:1.4rem;color:#f5d7ff;
+    margin-bottom:12px;display:block;font-weight:700;
+  }
+</style>
+</head> 
+<body>
+
+<div class="progress-bar" id="progress"></div>
+<canvas id="c"></canvas>
+
+<div class="scroll-hint" id="scrollHint">
+  <div class="scroll-line"></div>
+  <span>Scroll</span>
+</div>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">Vrushabadri <span>Event & Decors</span></div>
+  <div class="nav-links">
+    <a href="#services">Services</a>
+<a href="#about">About</a>
+<a href="#gallery">Gallery</a>    <a href="#contact">Contact</a>
+  </div>
+</nav>
+
+<div class="content">
+
+  <!-- HERO -->
+<!-- HERO -->
+<section class="hero bg-section hero-bg" style="position:relative">
+    <div class="glow" style="width:500px;height:500px;background:rgba(192,132,224,0.12);top:5%;left:10%"></div>
+    <div class="glow" style="width:350px;height:350px;background:rgba(244,114,182,0.08);top:15%;right:8%"></div>
+    <div class="glow" style="width:200px;height:200px;background:rgba(251,191,36,0.07);bottom:20%;left:40%"></div>
+    <div class="label">Where Flowers Meet Flawless Celebrations</div>
+    <h1 class="section-title">Vrushabadri <span class="gradient-text">Event</span><br>&amp; Decors</h1>
+    <p class="desc">We transform ordinary occasions into extraordinary experiences — with stunning floral artistry and meticulous event management that brings your vision to life.</p>
+    <div class="tag-box">
+      <span class="tag rose">Weddings</span>
+      <span class="tag purple">Corporate Events</span>
+      <span class="tag gold">Floral Design</span>
+      <span class="tag lavender">Private Celebrations</span>
+    </div>
+    <div class="divider"></div>
+  </section>
+
+  <!-- SERVICES -->
+<section id="services" class="bg-section services-bg" style="position:relative">    <div class="glow" style="width:600px;height:400px;background:rgba(244,114,182,0.07);top:0;right:-100px"></div>
+    <div class="label">What We Offer</div>
+    <h2 class="section-title">Our <span class="gradient-text">Services</span></h2>
+    <p class="desc">From intimate private parties to grand wedding celebrations, we handle every detail with artistry and precision.</p>
+    <div class="services-grid">
+      <div class="service-card">
+        <span class="service-icon">🌹</span>
+        <div class="service-name">Floral Design</div>
+        <div class="service-desc">Bespoke bouquets, centerpieces, stage décor, and grand floral installations crafted for your moment.</div>
+        <div class="service-example">↳ Romantic rose arches for weddings</div>
+      </div>
+      <div class="service-card">
+        <span class="service-icon">✨</span>
+        <div class="service-name">Event Planning</div>
+        <div class="service-desc">Complete management — venue, catering, décor, entertainment — handled seamlessly from start to finish.</div>
+        <div class="service-example">↳ Corporate gala with themed décor</div>
+      </div>
+      <div class="service-card">
+        <span class="service-icon">💍</span>
+        <div class="service-name">Wedding Management</div>
+        <div class="service-desc">From engagement to reception, we handle every detail so you can be fully present in every moment.</div>
+        <div class="service-example">↳ Beachside wedding with pastel palette</div>
+      </div>
+      <div class="service-card">
+        <span class="service-icon">🏛️</span>
+        <div class="service-name">Corporate Events</div>
+        <div class="service-desc">Conferences, product launches, and award nights elevated with impeccable floral elegance.</div>
+        <div class="service-example">↳ Orchid arrangements for product launch</div>
+      </div>
+      <div class="service-card">
+        <span class="service-icon">🎂</span>
+        <div class="service-name">Private Celebrations</div>
+        <div class="service-desc">Birthdays, anniversaries, baby showers — each celebration made magical and uniquely yours.</div>
+        <div class="service-example">↳ Whimsical garden party with seasonal blooms</div>
+      </div>
+    </div>
+    <div class="divider"></div>
+  </section>
+
+  <!-- ABOUT -->
+<section id="about" class="bg-section about-bg" style="position:relative">    <div class="glow" style="width:500px;height:500px;background:rgba(167,139,250,0.09);top:10%;left:-80px"></div>
+    <div class="label">Our Story</div>
+    <h2 class="section-title">Built on <span class="gradient-text">Passion</span><br>Precision & Creativity</h2>
+    <p class="desc">Vrushabadri Event & Decors blends floral artistry with expert event management to deliver personalized experiences that reflect your story. Whether it's a wedding, corporate gathering, or private celebration, we ensure every detail is perfect.</p>
+    <div class="tag-box">
+      <span class="tag purple">Artistry</span>
+      <span class="tag rose">Creativity</span>
+      <span class="tag gold">Precision</span>
+      <span class="tag mint">Personalized</span>
+    </div>
+    <div class="divider"></div>
+  </section>
+<!-- GALLERY -->
+<section id="gallery" class="bg-section services-bg" style="position:relative">
+  <div class="glow" style="width:600px;height:400px;background:rgba(244,114,182,0.07);top:0;right:-100px"></div>
+
+  <div class="label">Signature Floral Experiences</div>
+  <h2 class="section-title">Premium <span class="gradient-text">Gallery</span></h2>
+
+  <p class="desc">
+    Explore timeless floral artistry, elegant weddings, luxury stages, and unforgettable celebrations curated with precision.
+  </p>
+
+  <div class="gallery-grid">
+
+    <div class="gallery-item">
+      <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=900&q=80" alt="Luxury Wedding Stage">
+      <div class="gallery-overlay">
+        <div class="gallery-title">Luxury Wedding Stage</div>
+      </div>
+    </div>
+
+    <div class="gallery-item">
+      <img src="https://images.unsplash.com/photo-1469371670807-013ccf25f16a?auto=format&fit=crop&w=900&q=80" alt="Elegant Floral Design">
+      <div class="gallery-overlay">
+        <div class="gallery-title">Elegant Floral Design</div>
+      </div>
+    </div>
+
+    <div class="gallery-item">
+      <img src="https://images.unsplash.com/photo-1520854221256-17451cc331bf?auto=format&fit=crop&w=900&q=80" alt="Reception Grandeur">
+      <div class="gallery-overlay">
+        <div class="gallery-title">Reception Grandeur</div>
+      </div>
+    </div>
+
+    <div class="gallery-item">
+      <img src="https://images.unsplash.com/photo-1505236858219-8359eb29e329?auto=format&fit=crop&w=900&q=80" alt="Luxury Floral Decor">
+      <div class="gallery-overlay">
+        <div class="gallery-title">Luxury Floral Decor</div>
+      </div>
+    </div>
+
+    <div class="gallery-item">
+      <img src="https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&w=900&q=80" alt="Dream Wedding">
+      <div class="gallery-overlay">
+        <div class="gallery-title">Dream Wedding</div>
+      </div>
+    </div>
+
+    <div class="gallery-item">
+      <img src="https://images.unsplash.com/photo-1515934751635-c81c6bc9a2d8?auto=format&fit=crop&w=900&q=80" alt="Event Styling">
+      <div class="gallery-overlay">
+        <div class="gallery-title">Premium Event Styling</div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="divider"></div>
+</section>
+  <!-- CONTACT -->
+<section id="contact" class="bg-section contact-bg" style="position:relative">    <div class="glow" style="width:600px;height:500px;background:rgba(192,132,224,0.1);top:0;left:50%;transform:translateX(-50%)"></div>
+    <div class="label">Let's Create Together</div>
+    <h2 class="section-title">Design Your <span class="gradient-text">Dream</span> Event</h2>
+    <p class="desc">Let's bring your vision to life. Reach out for consultations, bookings, or custom floral designs — we're here to make your special day unforgettable.</p>
+    <div class="contact-card">
+      <p>Every great event starts with a conversation. Tell us your vision and we'll make it a reality — with flowers, elegance, and flawless execution.</p>
+      <a href="ContactUs.html" class="cta-btn">Get In Touch</a>
+    </div>
+    <div class="divider"></div>
+  </section>
+
+</div>
+
+<footer>
+  <span class="footer-logo">Vrushabadri Event & Decors</span>
+  © 2026 · All Rights Reserved · Where flowers meet flawless celebrations.
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+// ─── THREE.JS CANVAS ───
+const renderer = new THREE.WebGLRenderer({canvas:document.getElementById('c'),antialias:true,alpha:true});
+renderer.setPixelRatio(Math.min(window.devicePixelRatio,2));
+renderer.setSize(window.innerWidth, window.innerHeight);
+
+const scene = new THREE.Scene();
+const camera = new THREE.PerspectiveCamera(60, window.innerWidth/window.innerHeight, 0.1, 100);
+camera.position.set(0,0,5);
+
+// Lighting
+const ambient = new THREE.AmbientLight(0xffffff, 0.3);
+scene.add(ambient);
+const pt1 = new THREE.PointLight(0xc084e0, 3, 20);
+pt1.position.set(3,3,3);
+scene.add(pt1);
+const pt2 = new THREE.PointLight(0xf472b6, 2.5, 20);
+pt2.position.set(-3,-2,2);
+scene.add(pt2);
+const pt3 = new THREE.PointLight(0xfbbf24, 2, 20);
+pt3.position.set(0,4,-2);
+scene.add(pt3);
+
+function mat(col, emis=0x000000){
+  return new THREE.MeshStandardMaterial({
+    color:col,emissive:emis,emissiveIntensity:0.2,
+    transparent:true,opacity:1,metalness:0.5,roughness:0.3
+  });
+}
+
+// ── SCENE 1: Hero — Floral-like petal ring / torus cluster ──
+const heroGroup = new THREE.Group();
+const petalColors = [0xc084e0, 0xf472b6, 0xfbbf24, 0xa78bfa, 0x34d399];
+for(let i=0;i<18;i++){
+  const angle = (i/18)*Math.PI*2;
+  const r = 2.2;
+  const geo = new THREE.TorusGeometry(0.35+Math.random()*0.2, 0.06, 8, 32);
+  const m = mat(petalColors[i%petalColors.length]);
+  const mesh = new THREE.Mesh(geo, m);
+  mesh.position.set(Math.cos(angle)*r, Math.sin(angle)*r, (Math.random()-0.5)*0.6);
+  mesh.rotation.z = angle + Math.PI/2;
+  mesh.userData.angle = angle;
+  heroGroup.add(mesh);
+}
+// central sphere
+const centerGeo = new THREE.SphereGeometry(0.5, 32, 32);
+const centerMesh = new THREE.Mesh(centerGeo, mat(0xc084e0, 0x6b21a8));
+heroGroup.add(centerMesh);
+scene.add(heroGroup);
+
+// ── SCENE 2: Services — Floating cubes/crystals ──
+const scene2Group = new THREE.Group();
+for(let i=0;i<22;i++){
+  const s = 0.15+Math.random()*0.35;
+  const geo = Math.random()>0.5
+    ? new THREE.OctahedronGeometry(s)
+    : new THREE.TetrahedronGeometry(s);
+  const c = petalColors[i%petalColors.length];
+  const m = mat(c);
+  const mesh = new THREE.Mesh(geo, m);
+  mesh.position.set((Math.random()-0.5)*5,(Math.random()-0.5)*4,(Math.random()-0.5)*2);
+  mesh.userData.speed = {x:(Math.random()-0.5)*0.008,y:(Math.random()-0.5)*0.008};
+  scene2Group.add(mesh);
+}
+scene2Group.visible = false;
+scene.add(scene2Group);
+
+// ── SCENE 3: About — Ribbon / DNA helix ──
+const scene3Group = new THREE.Group();
+const helixCount = 80;
+for(let i=0;i<helixCount;i++){
+  const t = (i/helixCount)*Math.PI*6 - Math.PI*3;
+  const r = 1.8;
+  const geo = new THREE.SphereGeometry(0.07, 8, 8);
+  const c = petalColors[i%petalColors.length];
+  const m = mat(c, c);
+  const mesh1 = new THREE.Mesh(geo, m);
+  mesh1.position.set(Math.cos(t)*r, t*0.3, Math.sin(t)*r);
+  scene3Group.add(mesh1);
+  const mesh2 = new THREE.Mesh(geo.clone(), m.clone());
+  mesh2.position.set(Math.cos(t+Math.PI)*r, t*0.3, Math.sin(t+Math.PI)*r);
+  scene3Group.add(mesh2);
+}
+scene3Group.visible = false;
+scene.add(scene3Group);
+
+// ── SCENE 4: Contact — Particle bloom / flower ──
+const scene4Group = new THREE.Group();
+const bloomCount = 2000;
+const bGeo = new THREE.BufferGeometry();
+const bPos = new Float32Array(bloomCount*3);
+const bCol = new Float32Array(bloomCount*3);
+for(let i=0;i<bloomCount;i++){
+  const theta = Math.random()*Math.PI*2;
+  const phi = Math.random()*Math.PI;
+  const r = 1.5+Math.random()*1.5;
+  const wave = Math.cos(theta*5)*0.4;
+  bPos[i*3] = (r+wave)*Math.sin(phi)*Math.cos(theta);
+  bPos[i*3+1] = (r+wave)*Math.sin(phi)*Math.sin(theta);
+  bPos[i*3+2] = (r+wave)*Math.cos(phi);
+  const c = new THREE.Color(petalColors[i%petalColors.length]);
+  bCol[i*3]=c.r; bCol[i*3+1]=c.g; bCol[i*3+2]=c.b;
+}
+bGeo.setAttribute('position', new THREE.BufferAttribute(bPos,3));
+bGeo.setAttribute('color', new THREE.BufferAttribute(bCol,3));
+const bMat = new THREE.PointsMaterial({size:0.06,vertexColors:true,transparent:true,opacity:0.85});
+scene4Group.add(new THREE.Points(bGeo, bMat));
+scene4Group.visible = false;
+scene.add(scene4Group);
+
+// SCROLL + SECTION LOGIC
+const sections = [
+  document.querySelector('.hero'),
+  document.getElementById('services'),
+  document.getElementById('about'),
+  document.getElementById('contact'),
+];
+const groups = [heroGroup, scene2Group, scene3Group, scene4Group];
+const camPositions = [
+  {x:0,y:0,z:5},
+  {x:1.5,y:0.5,z:4.5},
+  {x:-1,y:0,z:5},
+  {x:0,y:0,z:4.2},
+];
+
+let currentSection = 0;
+let targetSection = 0;
+
+function getSectionIndex(){
+  const scrollY = window.scrollY;
+  const winH = window.innerHeight;
+  let idx = 0;
+  sections.forEach((s,i)=>{ if(s && scrollY >= s.offsetTop - winH*0.4) idx=i; });
+  return idx;
+}
+
+const observer = new IntersectionObserver(entries=>{
+  entries.forEach(e=>{ if(e.isIntersecting) e.target.classList.add('visible'); });
+},{threshold:0.25});
+sections.forEach((s,i)=>{ if(i>0 && s) observer.observe(s); });
+
+window.addEventListener('scroll',()=>{
+  const max = document.body.scrollHeight - window.innerHeight;
+  const pct = (window.scrollY/max)*100;
+  document.getElementById('progress').style.width = pct+'%';
+  document.getElementById('scrollHint').style.opacity = window.scrollY > 80 ? '0' : '1';
+  targetSection = getSectionIndex();
+});
+
+let mouseX=0, mouseY=0;
+window.addEventListener('mousemove',e=>{
+  mouseX = (e.clientX/window.innerWidth - 0.5)*2;
+  mouseY = -(e.clientY/window.innerHeight - 0.5)*2;
+});
+window.addEventListener('resize',()=>{
+  camera.aspect = window.innerWidth/window.innerHeight;
+  camera.updateProjectionMatrix();
+  renderer.setSize(window.innerWidth, window.innerHeight);
+});
+
+const clock = new THREE.Clock();
+function animate(){
+  requestAnimationFrame(animate);
+  const t = clock.getElapsedTime();
+
+  currentSection += (targetSection - currentSection)*0.05;
+  const ci = Math.round(currentSection);
+
+  groups.forEach((g,i)=>{
+    const dist = Math.abs(currentSection - i);
+    g.visible = dist < 1.5;
+    if(g.visible){
+      g.children.forEach(c=>{ if(c.material) c.material.opacity = Math.max(0,1-dist); });
+    }
+  });
+
+  const cp = camPositions[Math.min(ci, camPositions.length-1)];
+  camera.position.x += (cp.x + mouseX*0.25 - camera.position.x)*0.04;
+  camera.position.y += (cp.y + mouseY*0.25 - camera.position.y)*0.04;
+  camera.position.z += (cp.z - camera.position.z)*0.04;
+  camera.lookAt(0,0,0);
+
+  pt1.color.setHSL((t*0.04)%1, 0.9, 0.6);
+  pt2.color.setHSL((t*0.05+0.4)%1, 0.9, 0.6);
+  pt3.color.setHSL((t*0.03+0.7)%1, 0.9, 0.6);
+
+  // Scene 1: petal ring rotation
+  if(heroGroup.visible){
+    heroGroup.rotation.z = t*0.15;
+    heroGroup.rotation.y = Math.sin(t*0.3)*0.2;
+    heroGroup.children.forEach((c,i)=>{
+      if(c.userData.angle !== undefined){
+        c.rotation.x = t*0.5 + i;
+        c.rotation.y = t*0.3;
+      }
+    });
+  }
+  // Scene 2: crystals float
+  if(scene2Group.visible){
+    scene2Group.children.forEach((c,i)=>{
+      if(c.userData.speed){
+        c.rotation.x += c.userData.speed.x*3;
+        c.rotation.y += c.userData.speed.y*3;
+        c.position.y += Math.sin(t+i*0.4)*0.004;
+      }
+    });
+    scene2Group.rotation.y = t*0.07;
+  }
+  // Scene 3: helix scroll
+  if(scene3Group.visible){
+    scene3Group.rotation.y = t*0.25;
+    scene3Group.position.y = Math.sin(t*0.3)*0.3;
+  }
+  // Scene 4: bloom pulse
+  if(scene4Group.visible){
+    scene4Group.rotation.y = t*0.12;
+    scene4Group.rotation.x = t*0.05;
+    bMat.size = 0.055 + Math.sin(t*1.5)*0.02;
+    scene4Group.position.y = Math.sin(t*0.4)*0.3;
+  }
+
+  renderer.render(scene, camera);
+}
+animate();
+</script>
+</body>
+</html>
